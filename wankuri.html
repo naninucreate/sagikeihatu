@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>プレミアム・メンバーズ・ネット</title>
+    <style>
+        body { 
+            background-color: #000000; 
+            color: #ffffff; 
+            font-family: "MS PMincho", "MS Mincho", "ヒラギノ明朝 Pro W3", serif; 
+            text-align: center; 
+            padding: 20px; 
+            margin: 0;
+        }
+        .container { 
+            max-width: 650px; 
+            margin: 30px auto; 
+            border: 3px double #ff0000; 
+            background-color: #0d0d0d; 
+            padding: 25px; 
+        }
+        .danger-text { color: #ff0000; font-weight: bold; }
+        .warning-blink { color: #ffff00; font-weight: bold; }
+        .price { 
+            font-size: 28px; 
+            color: #ff0000; 
+            font-weight: bold; 
+            border: 1px dashed #ff0000; 
+            padding: 10px; 
+            margin: 20px 0;
+            background-color: #260000;
+        }
+        .log-box { 
+            background-color: #1a1a1a; 
+            border: 1px solid #555555; 
+            padding: 15px; 
+            text-align: left; 
+            margin: 20px 0; 
+            font-family: "MS Gothic", monospace; 
+            font-size: 13px;
+            color: #00ff00; 
+            line-height: 1.7;
+        }
+        .action-btn { 
+            display: inline-block; 
+            width: 85%;
+            padding: 12px; 
+            background: #222222; 
+            color: #ffff00; 
+            text-decoration: none; 
+            font-weight: bold; 
+            border: 2px solid #ff0000; 
+            cursor: pointer; 
+            font-size: 16px;
+            margin-top: 15px;
+        }
+        .action-btn:hover { background: #440000; }
+        .hidden { display: none; }
+
+        /* 啓発画面スタイル */
+        .edu-container {
+            max-width: 650px; 
+            margin: 30px auto; 
+            background-color: #ffffff; 
+            color: #333333; 
+            padding: 30px; 
+            border-radius: 8px;
+            font-family: sans-serif;
+            text-align: left;
+            box-shadow: 0 0 20px rgba(255,255,255,0.2);
+        }
+        .edu-title { color: #2ed573; text-align: center; font-size: 22px; border-bottom: 2px solid #2ed573; padding-bottom: 10px; }
+        .edu-box { background: #f1f2f6; border-left: 5px solid #2ed573; padding: 15px; margin: 20px 0; line-height: 1.6; }
+    </style>
+</head>
+<body>
+
+    <!-- 【第1段階】 入り口画面 -->
+    <div id="step1" class="container">
+        <h3 style="color: #cccccc;">認証システム</h3>
+        <p>これより先は有料会員専用エリアとなります。</p>
+        <p style="font-size: 12px; color: #888888;">※18歳未満の方の入場は固くお断りいたします。</p>
+        <p style="font-size: 12px; color: #888888;">※入場ボタンを押した時点で、利用規約および自動会員登録に同意したものとみなされます。</p>
+        <br>
+        <button class="action-btn" style="color: #ffffff; border-color: #cccccc;" onclick="triggerScam()">【18歳以上】 同意して入場する</button>
+    </div>
+
+    <!-- 【第2段階】 偽の請求画面（完全実データ埋め込み） -->
+    <div id="step2" class="container hidden">
+        <h2 class="danger-text">【重要】 会員登録完了通知</h2>
+        <p>ご入会手続きが正常に完了いたしました。</p>
+        <p>利用規約に基づき、以下の初期登録費用を遅滞なくお支払いください。</p>
+        
+        <div class="price">
+            請求金額：金 98,000円（税込）
+        </div>
+        
+        <p class="warning-blink">◆ 電子計算機使用詐欺罪防止のため、以下のアクセスログを電子裁判の証拠として即時保存しました：</p>
+        
+        <div class="log-box">
+            ■ 接続IPアドレス：<span id="ip-address">解析中...</span><br>
+            ■ リモートホスト：<span id="host-name">解析中...</span><br>
+            ■ インターネットプロバイダ：<span id="isp-name">解析中...</span><br>
+            ■ 位置識別（地域）：<span id="location">解析中...</span><br>
+            ■ 端末環境（UserAgent）：<span id="user-agent">解析中...</span><br>
+            ■ 電子タイムスタンプ：<span id="access-time"></span>
+        </div>
+        
+        <p class="danger-text" style="font-size: 13px;">※本通知より24時間以内に支払いが確認できない場合、身元調査（プロバイダへの情報開示請求）を行い、ご自宅または勤務先へ回収員が直接集集金に伺うか、簡易裁判所からの支払督促手続に移行します。</p>
+        <hr style="border: 0; border-top: 1px dashed #ff0000;">
+        <p style="font-size: 14px;">誤ってボタンを押してしまった方、登録の取り消し・退会を希望される方は、必ず以下の申請フォームより即時手続きを行ってください。</p>
+        <button class="action-btn" onclick="showEducation()">誤操作による退会申請・データ抹消はこちら</button>
+    </div>
+
+    <!-- 【第3段階】 ネタばらし・啓発画面 -->
+    <div id="step3" class="edu-container hidden">
+        <h2 class="edu-title">安心してください。これはワンクリック詐欺の「模擬体験」です</h2>
+        
+        <div class="edu-box">
+            <p><strong>実際の請求や、あなたの個人情報（氏名、住所、電話番号など）が相手に伝わることは一切ありません。</strong></p>
+            <p>一昔前の詐欺サイトは、このように法律用語を並べ立て、本物の接続情報を突きつけることで「もう逃げられない」とパニックに陥れるのが手口でした。</p>
+        </div>
+
+        <h3>なぜ、ホスト名やプロバイダまで表示されたの？</h3>
+        <p style="line-height: 1.6; font-size: 15px;">
+            あなたが今使っているスマホやパソコンは、ネットに繋ぐために必ずプロバイダ（回線会社）を経由しています。サイトにアクセスした際、その通信の通り道である<b>「IPアドレス」「リモートホスト名」「プロバイダ名」は自動的に相手に伝わります。</b><br>
+            これはネットの仕組み上、隠すことができない「足跡」のようなものです。<br>
+            <span style="color: #ff0000; font-weight: bold;">しかし、これらの情報に「あなたの名前」や「具体的な住所」は含まれていません。このデータから個人を特定することは不可能です。</span>
+        </p>
+
+        <h3>ひっかからないための3つの鉄則</h3>
+        <ol style="line-height: 1.8; padding-left: 20px;">
+            <li><strong>「完全に無視」してページを閉じる：</strong> 相手はあなたが誰なのか知りません。</li>
+            <li><strong>「解約ボタン」や電話番号に連絡しない：</strong> 焦ってこちらから連絡してしまうと、そこで本物のメールアドレスや電話番号を相手に教えてしまうことになります。</li>
+            <li><strong>一人で悩まず相談する：</strong> 不安な場合は、消費者ホットライン（局番なしの「188」）へ相談してください。</li>
+        </ol>
+    </div>
+
+    <script>
+        // 実データを格納するオブジェクト
+        let networkData = { ip: "取得失敗", host: "取得失敗", isp: "不明", region: "不明" };
+        
+        // 無料の高精度IP/ホスト情報取得API（日本語対応）を利用
+        async function fetchNetworkData() {
+            try {
+                // ip-api.com を使用（fieldsで必要な情報と日本語を指定）
+                const response = await fetch('http://ip-api.com/json/?lang=ja&fields=status,message,query,reverse,isp,regionName,city');
+                const data = await response.json();
+                
+                if (data.status === "success") {
+                    networkData.ip = data.query || "取得失敗";
+                    networkData.host = data.reverse || data.query || "取得失敗"; // ホスト名（逆引き）
+                    networkData.isp = data.isp || "不明";
+                    networkData.region = (data.regionName || "") + " " + (data.city || "");
+                }
+            } catch (error) {
+                console.error("ネットワークデータの取得に失敗しました:", error);
+                // バックアップ：SSL対応の別APIで最低限IPだけは取る
+                try {
+                    const resBackup = await fetch('https://ipapi.co/json/');
+                    const dataBackup = await resCenter.json();
+                    networkData.ip = dataBackup.ip;
+                    networkData.host = "プロバイダ固有ホスト（解析済）";
+                    networkData.isp = dataBackup.org;
+                    networkData.region = dataBackup.region;
+                } catch(e) {
+                    networkData.ip = "119.241.xx.xx (デモ)";
+                    networkData.host = "pXXXX-ipadfxXXtokyo.ocn.ne.jp";
+                    networkData.isp = "大手通信プロバイダ";
+                    networkData.region = "東京都";
+                }
+            }
+        }
+        
+        // ページを開いた瞬間に裏で読み込み開始
+        fetchNetworkData();
+
+        // 詐欺画面発動
+        function triggerScam() {
+            document.getElementById('step1').classList.add('hidden');
+            document.getElementById('step2').classList.remove('hidden');
+
+            // 完全に本物のデータをログにセット
+            document.getElementById('ip-address').innerText = networkData.ip;
+            document.getElementById('host-name').innerText = networkData.host;
+            document.getElementById('isp-name').innerText = networkData.isp;
+            document.getElementById('location').innerText = networkData.region;
+            
+            // 端末情報
+            document.getElementById('user-agent').innerText = navigator.userAgent;
+            
+            // 現在時刻
+            const now = new Date();
+            document.getElementById('access-time').innerText = now.toLocaleString('ja-JP') + " .0000234(JST)";
+        }
+
+        // 啓発画面へ
+        function showEducation() {
+            document.body.style.backgroundColor = "#f0f2f5";
+            document.body.style.color = "#333333";
+            document.getElementById('step2').classList.add('hidden');
+            document.getElementById('step3').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
